@@ -1,5 +1,6 @@
 -- ***************************************
--- This file is used for.....
+-- This file may be used for little bits of code which are
+-- useful for us but that we don't want to export
 -- ***************************************
 
 
