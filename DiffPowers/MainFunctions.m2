@@ -6,6 +6,9 @@ diffPowerPrimaryMonomial( MonomialIdeal, ZZ) := MonomialIdeal => (I, n) ->
     assert isPrimary I
 
     -- do some stuff...
+
+    -- getting the values of the powers
+    L = for i from 0 to (numgens I - 1) when true list (first degree I_i)
 )
 
 
