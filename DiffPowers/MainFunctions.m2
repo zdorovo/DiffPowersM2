@@ -20,7 +20,7 @@ diffPowerPrimaryMonomial( MonomialIdeal, ZZ) := MonomialIdeal => (I, n) ->
     C = {};
     for i from 2 to num do 
         C = append(C, select(compositions (num, i), comp -> all(comp, c -> c <= 1)));
-    -- for each combination, assign powers properly (finish)
+    -- for each combination, assign powers
     for i from 0 to #C - 1 do
         (deg = n;
         for j in C_i do
