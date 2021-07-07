@@ -20,10 +20,17 @@ diffPowerPrimaryMonomial( MonomialIdeal, ZZ) := MonomialIdeal => (I, n) ->
     C = {};
     for i from 2 to num do 
         C = append(C, select(compositions (num, i), comp -> all(comp, c -> c <= 1)));
-    -- for each combination, assign powers properly (finish)
 
+    << "List of compositions: " << C << endl;
+    -- for each combination, assign powers properly (finish)
+    for i from 0 to #C - 1 do
+        (deg = n;
+        for j from 0 to #(C_i) - 1 do
+            (apply(#((C_i)_j), k -> (deg = deg + ((((C_i)_j)_k) * ((L_k)_1)) - 1;));
+            Pows = select(compositions(i + 2, deg), comp -> all(comp, c -> c > 0));
+            )
+        )
     -- testing below
-    << C << Gpow;
 )
 
 
