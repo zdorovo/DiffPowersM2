@@ -2,7 +2,7 @@ diffPowerPrimaryMonomial = method()
 
 diffPowerPrimaryMonomial( MonomialIdeal, ZZ) := MonomialIdeal => (I, n) ->
 (
-    -- throw an exception is I is not a primary ideal
+    -- throw an exception if I is not a primary ideal
     assert isPrimary I;
 
     -- do some stuff...
@@ -50,4 +50,14 @@ diffPowerMonomial( MonomialIdeal, ZZ) := MonomialIdeal => (I, n) ->
     -- intersect the ideals you get.
 
     intersect apply(primaryDecomposition I, J -> diffPowerPrimaryMonomial(J, n))
+)
+
+multipleContainmentMonomial = method()
+
+multipleContainmentMonomial( MonomialIdeal, ZZ) := ZZ => (I, n) ->
+(
+    d = 1;
+    -- TODO insert upper bound to stop infinite loop?
+    while (not(isSubset(diffPowerMonomial(I, d*n), I^n))) do (<< d; d = d + 1);
+    d
 )
