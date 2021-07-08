@@ -58,6 +58,6 @@ multipleContainmentMonomial( MonomialIdeal, ZZ) := ZZ => (I, n) ->
 (
     d = 1;
     -- TODO insert upper bound to stop infinite loop?
-    while (not(isSubset(diffPowerMonomial(I, d*n), I^n))) do (<< d; d = d + 1);
+    while (not(isSubset(diffPowerMonomial(I, d*n), I^n))) do (d = d + 1);
     d
 )
