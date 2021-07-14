@@ -61,3 +61,26 @@ multipleContainmentMonomial( MonomialIdeal, ZZ) := ZZ => (I, n) ->
     while (not(isSubset(diffPowerMonomial(I, d*n), I^n))) do (d = d + 1);
     d
 )
+
+-- Brenner, Jeffries, Nùñez-Betancourt method
+
+diffPower = method()
+
+diffPower( Ring, Ideal, ZZ) := Ideal => (R, I, n) ->
+(
+    -- check that the ideal belongs to the ring (TODO)
+
+    -- add eliminate option to R (TODO)
+
+    -- get new ring with additional variables
+    -- check for correctness (TODO)
+    K = coefficientRing R;
+    num = numgens R;
+    V = vars(0..(2*num - 1));
+    T = K[V];
+    D_gen = for i from 0 to num - 1 list (V_i - V_(2*i));
+    D = ideal(D_gen);
+    J = sub(I, for i from 0 to num - 1 list ((gens(R))_i => V_(2*i)));
+
+    -- perform calculation (TODO)
+)
