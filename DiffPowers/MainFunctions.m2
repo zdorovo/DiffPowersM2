@@ -64,23 +64,24 @@ multipleContainmentMonomial( MonomialIdeal, ZZ) := ZZ => (I, n) ->
 
 -- Brenner, Jeffries, Nùñez-Betancourt method
 
-diffPower = method()
+diffPowerPoly = method()
 
-diffPower( Ring, Ideal, ZZ) := Ideal => (R, I, n) ->
-(
-    -- check that the ideal belongs to the ring (TODO)
-
-    -- add eliminate option to R (TODO)
+diffPowerPoly( Ideal, ZZ) := Ideal => ( I, n) ->
+(   S = ring(I);
 
     -- get new ring with additional variables
-    -- check for correctness (TODO)
-    K = coefficientRing R;
-    num = numgens R;
-    V = vars(0..(2*num - 1));
-    T = K[V];
-    D_gen = for i from 0 to num - 1 list (V_i - V_(2*i));
-    D = ideal(D_gen);
-    J = sub(I, for i from 0 to num - 1 list ((gens(R))_i => V_(2*i)));
+    K = coefficientRing S;
+    G = gens S;
+    num = #G;
+    G' = for g in G list concatenate(toString(g), "_1");
+    T = K[G', G,  MonomialOrder => Eliminate num];
+    V = gens T;
+    Dgen = for i from 0 to num - 1 list (V_(i + num) - V_i);
+    D = ideal(Dgen);
+    J = sub(I, for i from 0 to num - 1 list (G_i => V_i));
 
-    -- perform calculation (TODO)
+    -- perform calculation
+    result = selectInSubring(1, gens gb (J + D^n));
+    -- need to put the output in the correct underlying ring
+    ideal(result)
 )
