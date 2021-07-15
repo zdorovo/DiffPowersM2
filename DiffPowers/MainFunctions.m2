@@ -83,5 +83,5 @@ diffPowerPoly( Ideal, ZZ) := Ideal => ( I, n) ->
     -- perform calculation
     result = selectInSubring(1, gens gb (J + D^n));
     -- need to put the output in the correct underlying ring
-    ideal(result)
+    substitute(ideal(result), S)
 )
