@@ -73,7 +73,7 @@ diffPowerPoly( Ideal, ZZ) := Ideal => ( I, n) ->
     K = coefficientRing S;
     G = gens S;
     num = #G;
-    G' = for g in G list concatenate(toString(g), "_1");
+    G' = for g in G list concatenate(toString(g), "1");
     T = K[G', G,  MonomialOrder => Eliminate num];
     V = gens T;
     Dgen = for i from 0 to num - 1 list (V_(i + num) - V_i);
